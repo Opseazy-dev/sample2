@@ -23,5 +23,5 @@ app.use('/api/student',studentRoute);
 
 
 app.listen(4000, ()=>{
-    console.log("Server is listening on 4000");
+    console.log("Server is listening on 2000");
 })
