@@ -47,8 +47,11 @@ router.post('/login',async (req,res)=>{
     
     // create and assign token
     const token = jwt.sign({_id:user._id},process.env.TOKEN_SECRET);
-    res.header('auth-token', token).send(token);
-    
+    if(user.master){
+        res.header('auth-token', token).redirect('/dashboarduser');
+    }else{
+        res.header('auth-token', token).redirect('/documents');
+    }
 })
 
 

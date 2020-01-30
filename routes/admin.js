@@ -40,7 +40,7 @@ router.post('/',async (req,res)=>{
      })
      try{
          const savedUser = await user.save();
-         res.send(`${savedUser.username} is created`);
+         res.redirect('/dashboarduser');
      }catch(err){
          res.status(400).send(err);
      }
@@ -97,7 +97,7 @@ router.post('/document',verify,async(req,res)=>{
         })
         try{
             const savedDocument = await document.save();
-            res.send(`Document ${savedDocument.filename} is Saved`);
+            res.redirect('/dashboard');
         }catch(err){
             res.status(400).send(err);
         }

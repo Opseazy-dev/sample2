@@ -9,11 +9,12 @@
 </head>
 <body>
     <section>
+        <form action="/api/admin/document" method="POST">
         <div class="login-container">
             <div class="login-box">
                     <h1>Add Document</h1>
                     <h3>Document Name</h3>
-                    <input type="text">
+                    <input type="text" name="filename">
                     <div class="chkbox">
                         <h3><input type="checkbox">user1</h3>
                         <h3><input type="checkbox">user1</h3>
@@ -26,10 +27,11 @@
                         <h3><input type="checkbox">user1</h3>
                         <h3><input type="checkbox">user1</h3>
                     </div>
-                    <a href="#">Document Upload</a>
+                    <input type="file">Document Upload</input>
                     <button>Submit</button>
             </div>
         </div>
+        </form>
     </section>
     
 </body>

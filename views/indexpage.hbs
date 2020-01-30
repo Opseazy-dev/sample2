@@ -11,11 +11,11 @@
     <header>
         <div class="index-container">
             <div class="navleft">
-                <div class="logobg"></div>
-                <h1>Madras High Court</h1>
+                <div class=""></div>
+                <h1>Law Portal</h1>
             </div>
             <div class="navright">
-                <button>Login</button>
+                <a class="loginbutton">Login</a>
             </div>
         </div>
     </header>
@@ -40,13 +40,15 @@
                     for his signature on their warrants of appointment. Of the 15, nine are from
                     among lawyers and six from the subordinate judiciary.
                 </h3>
-            <div class="login-box">
+                <form action="/api/user/login" method="POST">
+                <div class="login-box" id="log">
                     <h1>USER LOGIN</h1>
                     <h3>User ID</h3>
-                    <input type="text">
+                    <input type="text" name="username">
                     <h3>Password</h3>
-                    <input type="text">
-                    <button>Login</button>
+                    <input type="password" name="password">
+                    <button type="submit">Login</button>
+                </form>
             </div>
         </div>
         

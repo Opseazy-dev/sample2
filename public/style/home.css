@@ -23,8 +23,10 @@ header {
     display: flex;
     align-items: center;
 }
-.navbar>.left>h3 {
+.navbar>.left>a {
     margin-left: 70px;
+    text-decoration: none;
+    color: #303030;
 }
 h1 {
     font-size: 32px;
@@ -53,6 +55,21 @@ input {
     width: 352px;
     height: 50px;
     font-size: 24px;
+}
+.loginbutton {
+    width: 168px;
+    height: 50px;
+    background: #3939ff;
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 button {
     width: 168px;
@@ -83,11 +100,21 @@ button {
 }
 
 .download {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 140px;
     height:30px ;
     font-weight: normal;
     font-size: 21px;
     margin-top: 45px;
+    background: #3939ff;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    text-decoration: none;
+
 }
 .navtab {
     max-width: 1088px;
@@ -195,7 +222,7 @@ a {
     display: flex;
     justify-content: flex-end;
 }
-.addbtn>button {
+.addbtn>.loginbutton {
     margin: 15px 0;
 }
 .dashcontainer>.navtab {
@@ -214,6 +241,10 @@ a {
 }
 .documentcontainer>.box {
     margin:10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 h3>input {
     width: 20px;

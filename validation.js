@@ -7,7 +7,7 @@ const registerValidation=(data)=>{
     const schema={
         name:Joi.string().required(),
         username:Joi.string().required(),
-        master:Joi.boolean().required(),
+        master:Joi.boolean(),
         password:Joi.string().required()
     };
     return Joi.validate(data,schema);
