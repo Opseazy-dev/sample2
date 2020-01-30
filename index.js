@@ -22,6 +22,6 @@ app.use('/api/admin',adminRoute);
 app.use('/api/student',studentRoute);
 
 
-app.listen(4000, ()=>{
+app.listen(2000, ()=>{
     console.log("Server is listening on 2000");
 })
