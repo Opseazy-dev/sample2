@@ -50,4 +50,4 @@ app.use('/',defaultRoute);
 
 app.listen(2500, ()=>{
     console.log("Server is listening on 2500");
-})   
+})
