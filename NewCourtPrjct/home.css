@@ -1,0 +1,333 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color:#303030;
+}
+header {
+    background: #c2beff;
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    height: 80px;
+    max-width: 1336px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+.navbar>.left {
+    display: flex;
+    align-items: center;
+}
+.navbar>.left>h3 {
+    margin-left: 70px;
+}
+h1 {
+    font-size: 32px;
+    font-weight: bold;
+}
+h2 {
+    font-size: 24px;
+    font-weight: bold;
+}
+h3 {
+    font-size: 24px;
+    font-weight: normal;
+}
+h4 {
+    font-size: 14px;
+    font-weight: normal;
+}
+.banner {
+    max-width: 1336px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+}
+input {
+    width: 352px;
+    height: 50px;
+    font-size: 24px;
+}
+button {
+    width: 168px;
+    height: 50px;
+    background: #3939ff;
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+}
+.banner {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1000px;
+}
+.box {
+    border: 1px solid #ddd;
+    width: 160px;
+    height: 160px;
+    background: #c2beff;
+    text-align: center;
+    margin-top: 50px;
+}
+.box>h2 {
+    margin-top: 15px;
+}
+
+.download {
+    width: 140px;
+    height:30px ;
+    font-weight: normal;
+    font-size: 21px;
+    margin-top: 45px;
+}
+.navtab {
+    max-width: 1088px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    background: #c2beff;
+    height: 55px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+}
+a {
+    font-size: 24px;
+    text-decoration: underline;
+}
+.tabright>a:first-child {
+    margin-right: 35px;
+}
+.login-container {
+    max-width: 1088px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.login-box {
+    width: 536px;
+    height: 536px;
+    background: #c2beff;
+    display: flex;
+    flex-direction: column;
+    padding: 30px 90px;
+}
+.login-box>h1 {
+    text-align: center;
+    margin-bottom: 50px;
+}
+.login-box>h3 {
+    margin-bottom: 10px;
+}
+.login-box>input {
+    margin-bottom: 30px;
+}
+.login-box>button {
+    margin: 0 auto;
+}
+.index-container {
+    max-width: 1336px;
+    width: 100%;
+    height: 125px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+}
+.navleft {
+    display: flex;
+    align-items: center;
+}
+.navleft>h1 {
+    margin-left: 40px;
+}
+.logobg {
+    background-image: url('./images/courtlogo.png');
+    background-size: contain;
+    width: 79px;
+    height: 86px;
+    background-repeat: no-repeat;
+}
+.secimg {
+    background-image: url('./images/building.png');
+    background-size: cover;
+    height: 400px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.homecontents {
+    max-width: 1088px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.homecontents>h3 {
+    margin:50px 0;
+}
+.homecontents>h3:first-child {
+    margin-bottom: 0;
+}
+.homecontents>.login-box {
+    margin-bottom: 50px;
+}
+.dashcontainer {
+    max-width: 1088px;
+    width: 100%;
+    margin: 0 auto;
+}
+.addbtn {
+    display: flex;
+    justify-content: flex-end;
+}
+.addbtn>button {
+    margin: 15px 0;
+}
+.dashcontainer>.navtab {
+    margin-bottom: 10px;
+}
+.maincontainer {
+    padding: 50px 0;
+    margin:0 auto;
+    max-width: 1088px;
+    width: 100%;
+    
+}
+.documentcontainer {
+    display: flex;
+    flex-direction: row;
+}
+.documentcontainer>.box {
+    margin:10px;
+}
+h3>input {
+    width: 20px;
+    height: 20px;
+    background: #000000;
+    margin-right: 10px;
+}
+.chkbox {
+    overflow-y: scroll;
+    width: 352px;
+    height: 120px;
+    background: #fff;
+}
+.chkbox>h3 {
+    margin-left: 20px;
+}
+.login-box>a {
+    margin: 20px 0;
+}
+
+@media only screen and (max-width: 1023px) {
+    h1 {
+        font-size: 24px;
+    }
+    h2 {
+        font-size: 18px;
+    }
+    h3 {
+        font-size: 18px;
+    }
+    h4 {
+        font-size: 14px;
+    }
+    a {
+        font-size: 18px;
+    }
+    input {
+        width: 280px;
+        height: 45px;
+        box-sizing: border-box;
+    }
+    button {
+        width: 135px;
+        height: 40px;
+        font-size: 18px;
+    }
+    .login-box {
+        width: 100%;
+        height: 350px;
+        padding:20px 12px;
+        box-sizing: border-box;
+    }
+    .login-box>h1 {
+        margin-bottom: 20px;
+    }
+    .login-box>input {
+        margin-bottom: 15px;
+    }
+    .index-container {
+        padding: 0 10px;
+    }
+    .index-container>.navright {
+        display: none;
+    }
+    .logobg {
+        width: 70px;
+    }
+    .homecontents {
+        padding: 0 0px;
+    }
+    .homecontents>h3 {
+        padding: 0 30px;
+    }
+    .navleft>h1 {
+        margin-left: 10px;
+    }
+    .navbar {
+        padding: 0 10px;
+    }
+    .navbar>.left>h3 {
+        margin-left: 15px;
+    }
+    .navbar>.right {
+        display: none;
+    }
+    .addbtn {
+        justify-content: center;
+        margin: 20px 0;
+    }
+    .documentcontainer {
+        flex-direction: column;
+    }
+    .documentcontainer>.box {
+        margin: 5px;
+        width: 140px;
+        height: 140px;
+    }
+    .maincontainer {
+        display: flex;
+        justify-content: center;
+    }
+    .chkbox {
+        overflow-y: scroll;
+        width: 280px;
+        height: 100px;
+    }
+    .login-box>a {
+        margin: 10px 0;
+    }
+    .download {
+        width: 120px;
+        margin-top: 35px;
+        font-size: 18px;
+    }
+
+}
+
