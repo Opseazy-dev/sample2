@@ -156,7 +156,7 @@ a {
 }
 .logobg {
     background-image: url('courtlogo.png');
-    background-size: contain;
+    background-size: contain;  
     width: 79px;
     height: 86px;
     background-repeat: no-repeat;  
@@ -164,7 +164,7 @@ a {
 .secimg {
     background-image: url('building.png');
     background-size: cover;
-    height: 400px;
+    height: 400px;   
     background-position: center;
     background-repeat: no-repeat;
 }
