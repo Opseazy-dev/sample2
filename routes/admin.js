@@ -5,6 +5,8 @@ const bcrypt = require ('bcryptjs');
 const Document = require('../model/Document');
 const {documentValidation,registerValidation} = require("../validation");
 
+
+
 router.get('/',verify,async(req,res)=>{
     const admin = await User.findOne({_id:req.user._id});
     if(admin.master){
