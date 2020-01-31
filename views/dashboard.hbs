@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="/style/home.css">
 </head>
 <body>
     <header>
@@ -26,15 +26,14 @@
                 <a href="/adddocument" class="loginbutton">Add Doc</a>
                 <a href="/" class="loginbutton">Sign Out</a>
             </div>
-            <div class="navtab">
-                <div class="tableft">
-                    <h3>Document Name</h3>
+             {{#each documents}}
+                <div class="navtab">
+                    <div class="tableft">
+                        <h3>{{filename}}</h3>
+                    </div>
                 </div>
-                <div class="tabright">
-                    <a href="#"></a>
-                    <a href="#"></a>
-                </div>
-            </div>
+            {{/each}}
+            
         </div>
 
 

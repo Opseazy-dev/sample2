@@ -3,10 +3,38 @@ const verify = require('./verifyToken');
 const User = require('../model/User');
 const bcrypt = require ('bcryptjs');
 const Document = require('../model/Document');
-const {documentValidation,registerValidation} = require("../validation");
+const multer = require('multer');
+var path = require('path');
+const {registerValidation, documentValidation} = require("../validation");
 
+//Set Storage engine
+const storage = multer.diskStorage({
+    destination: './public/uploads',
+    filename:function(req,file,cb){
+        cb(null,req.body.filename+path.extname(file.originalname));
+    }
+});
 
+const upload = multer({
+    storage:storage,
+    limits:{fileSize:1150000},
+    fileFilter:function(req,file,cb){
+        checkFileType(file,cb);
+    }
 
+}).single('fname');
+
+function checkFileType(file,cb){
+    const filetypes = /pdf/;
+    const extname = filetypes.test(path.extname(file.originalname).toLocaleLowerCase());
+    const mimetype = filetypes.test(file.mimetype);
+
+    if(mimetype && extname){
+        return cb(null,true) ;
+    }else{
+        cb('Error : PDF Only')
+    }
+}
 router.get('/',verify,async(req,res)=>{
     const admin = await User.findOne({_id:req.user._id});
     if(admin.master){
@@ -44,26 +72,11 @@ router.post('/',async (req,res)=>{
      }catch(err){
          res.status(400).send(err);
      }
-
 })
 
 // User Delete
 
-router.delete('/:username',verify,async(req,res)=>{
-    const admin = await User.findOne({_id:req.user._id});
-    if(admin.master){
-        const username = await User.findOne({username:req.params.username});
-        // return  res.send(username)
-        if(!username) return res.status(400).send(`${req.query} username does not exist`);
 
-        const deleteusername = await User.findOneAndRemove({username:req.params.username})
-        
-        return res.send("User Deleted");
-        
-    }else{
-        return res.status(400).send("Access Denied");
-    }
-});
 
 
 // Document List
@@ -80,76 +93,38 @@ router.get('/document',verify,async(req,res)=>{
 
 
 // Document Adding
-router.post('/document',verify,async(req,res)=>{
-    const admin = await User.findOne({_id:req.user._id});
-    if(admin.master){
-        const {error} = documentValidation(req.body)
-        if(error) return res.status(400).send(error);
+router.post('/document',async(req,res)=>{
+            upload(req,res,async(err)=>{
+                if(err){
+                    res.render('adddocument',{
+                        msg:err
+                    })
+                }else{
+                    const {error} = documentValidation(req.body)
+                    if(error) return res.render('adddocument',{msg: error.details[0].message });
+                    const filename = await Document.findOne({filename:req.body.filename});
+                    if(filename) return  res.render('adddocument',{msg: 'Document Name already exist' })
 
-        const filename = await Document.findOne({filename:req.body.filename});
-        if(filename) return res.status(400).send('filename already exist');
-
-        const document = new Document({
-            filename:req.body.filename,
-            source:req.body.filename,
-            date:Date.now(),
-            userAttached:req.body.userAttached
+                    const document = new Document({
+                        filename:req.body.filename,
+                        source:'/uploads/'+req.file.filename,
+                        date:Date.now(),
+                        userAttached:req.body.userAttached
+                    })
+                    try{
+                        const savedDocument = await document.save();
+                        res.render('dashboard')
+                    }catch(err){
+                        res.render('adddocument',{msg: 'Something Went Wrong' })
+                    }
+            }
         })
-        try{
-            const savedDocument = await document.save();
-            res.redirect('/dashboard');
-        }catch(err){
-            res.status(400).send(err);
-        }
-    }else{
-        return res.status(400).send("Access Denied");
-    }
+        
+    // }else{
+    //     return res.status(400).send("Access Denied");
+    // }
 });
 
-// Document Find One
-router.get('/document/:filename',verify,async(req,res)=>{
-    const admin = await User.findOne({_id:req.user._id});
-    if(admin.master){
-        const filename = await Document.findOne({filename:req.params.filename});
-        if(!filename) return res.status(400).send(`${req.query} filename does not exist`);
-        return res.send(filename);
-    }else{
-        return res.status(400).send("Access Denied");
-    }    
-});
-
-// Document Update One
-router.put('/document/:filename',verify,async(req,res)=>{
-    const admin = await User.findOne({_id:req.user._id});
-    if(admin.master){
-        const filename = await Document.findOne({filename:req.params.filename});
-        if(!filename) return res.status(400).send(`${req.query} filename does not exist`);
-
-        const newfilename = await Document.findOneAndUpdate({filename:req.params.filename},{
-            filename:req.body.filename,
-            source:req.body.filename,
-            date:Date.now(),
-            userAttached:req.body.userAttached
-        })
-        return res.send("document updated successfully");
-    }else{
-        return res.status(400).send("Access Denied");
-    }
-});
-
-// Document Delete One
-router.delete('/document/:filename',verify,async(req,res)=>{
-    const admin = await User.findOne({_id:req.user._id});
-    if(admin.master){
-        const filename = await Document.findOne({filename:req.params.filename});
-        if(!filename) return res.status(400).send(`${req.query} filename does not exist`);
-
-        const deletefilename = await Document.findOneAndRemove({filename:req.params.filename});
-        return res.send("Document Deleted");
-    }else{
-        return res.status(400).send("Access Denied");
-    }
-});
 
 
 module.exports = router;

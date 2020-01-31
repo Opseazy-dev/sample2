@@ -2,12 +2,10 @@ const mongoose = require('mongoose');
 
 const documentSchema = new mongoose.Schema({
     filename:{
-        type:String,
-        required:true
+        type:String
     },
    source:{
-        type:String,
-        requires:true
+        type:String
     },
     date:{
         type:Date,

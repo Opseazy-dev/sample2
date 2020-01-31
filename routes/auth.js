@@ -2,6 +2,7 @@ const router = require('express').Router();
 const User = require('../model/User');
 const jwt = require('jsonwebtoken');
 const bcrypt = require ('bcryptjs');
+const Document = require('../model/Document');
 const {registerValidation, loginValidation} = require("../validation");
 
 router.post('/register',async (req,res)=>{
@@ -35,24 +36,27 @@ router.post('/register',async (req,res)=>{
 // LOGIN
 router.post('/login',async (req,res)=>{
     const {error} = loginValidation(req.body);
-    if(error) return res.status(400).send(error.details[0].message);
+    if(error) return res.render('indexpage',{msg:error.details[0].message})
+    // res.status(400).send(error.details[0].message);
 
     // Checking if email exists
     const user = await User.findOne({username:req.body.username});
-    if(!user) return res.status(400).send('Username or Password is incorrect');
+    const users = await User.find();
+
+    if(!user) return res.render('indexpage',{msg:'Invalid Username or password'});
 
     // Checking Password is Correct 
     const validPass = await bcrypt.compare(req.body.password,user.password);
-    if(!validPass) return res.status(400).send('Invalid Password');
+    if(!validPass) return  res.render('indexpage',{msg:'Invalid password'});
     
     // create and assign token
     const token = jwt.sign({_id:user._id},process.env.TOKEN_SECRET);
     if(user.master){
-        res.header('auth-token', token).redirect('/dashboarduser');
+        res.header('auth-token',token).render('dashboarduser',{users});
     }else{
-        res.header('auth-token', token).redirect('/documents');
+        const documents = await Document.find({ userAttached: { "$in" : [user.username]} });
+        res.header('auth-token',token).render('documents',{documents});
     }
 })
-
 
 module.exports = router;

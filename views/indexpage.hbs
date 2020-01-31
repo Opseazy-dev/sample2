@@ -43,6 +43,11 @@
                 <form action="/api/user/login" method="POST">
                 <div class="login-box" id="log">
                     <h1>USER LOGIN</h1>
+                    {{#if msg}}
+                        <p style="color:red">{{msg}}</p>
+                    {{else}}
+                        <p></p>                        
+                    {{/if}}
                     <h3>User ID</h3>
                     <input type="text" name="username">
                     <h3>Password</h3>

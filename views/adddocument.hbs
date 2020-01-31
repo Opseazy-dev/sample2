@@ -5,29 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>AddDocument</title>
-    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="/style/home.css">
 </head>
 <body>
+     <header>
+        <div class="navbar">
+            <div class="left">
+                <h1>Dashboard</h1>
+                <a href="/dashboarduser">User</a>
+                <a href="/dashboard">Document</a>
+            </div>
+            <div class="right">
+                <h2>Master name</h2>
+            </div>
+        </div>
+    </header>
     <section>
-        <form action="/api/admin/document" method="POST">
+        <form action="/api/admin/document" method="POST" enctype="multipart/form-data">
         <div class="login-container">
             <div class="login-box">
                     <h1>Add Document</h1>
+                    {{#if msg}}
+                        <p style="color:red">{{msg}}</p>
+                    {{else}}
+                        <p></p>                        
+                    {{/if}}
                     <h3>Document Name</h3>
                     <input type="text" name="filename">
                     <div class="chkbox">
-                        <h3><input type="checkbox">user1</h3>
-                        <h3><input type="checkbox">user1</h3>
-                        <h3><input type="checkbox">user1</h3>
-                        <h3><input type="checkbox">user1</h3>
-                        <h3><input type="checkbox">user1</h3>
-                        <h3><input type="checkbox">user1</h3>
-                        <h3><input type="checkbox">user1</h3>
-                        <h3><input type="checkbox">user1</h3>
-                        <h3><input type="checkbox">user1</h3>
-                        <h3><input type="checkbox">user1</h3>
+                        {{#each users}}
+                        <h3><input name="userAttached" value={{username}} type="checkbox">{{username}}</h3>
+                        {{/each}}
                     </div>
-                    <input type="file">Document Upload</input>
+                    <input type="file" name="fname">Document Upload</input>
                     <button>Submit</button>
             </div>
         </div>

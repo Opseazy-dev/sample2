@@ -5,27 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>DocumentView</title>
-    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="/style/home.css">
 </head>
 <body>
-    <header>
+<header>
         <div class="navbar">
             <div class="left">
-                <h1>Document View</h1>
+                <h1>Dashboard</h1>
             </div>
             <div class="right">
-                <h2>User name</h2>
+                <h2>Master name</h2>
             </div>
         </div>
     </header>
 <section>
     <div class="maincontainer">
+            <div class="navright">
+                <a class="loginbutton">Sign Out</a>
+            </div>
     <div class="documentcontainer">
-        <div class="box">
-            <h2>File Name</h2>
-            <h4>12/12/2020</h4>
-            <a class="download">Download</a>
-        </div>
+         {{#each documents}}
+                <div class="box">
+                    <h2>{{filename}}</h2>
+                    <a href={{source}} class="download" download>Download</a>
+                </div>
+        {{/each}}
+       
     </div>
 </div>
 </section>

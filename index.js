@@ -2,10 +2,11 @@ const express = require("express");
 const app = express();
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
-
 var hbs =require('express-handlebars');
 var path = require('path');
   
+
+const hbsHelpers = require('./helpers/handlebars');
 // Import Routes
 const authRoute = require('./routes/auth');
 const adminRoute = require('./routes/admin');
@@ -22,24 +23,18 @@ mongoose.connect(process.env.DB_CONNECT, {useNewUrlParser: true, useUnifiedTopol
 app.use(express.json());  
 app.use(express.urlencoded({ extended:false}));
 
-// app.engine('handlebars',expbs({ defaultLayout:'main'}));
-// app.set('view engine','handlebars');
-// app.set('views', path.join(__dirname, 'views'));
-// app.use(express.static(path.join(__dirname,"/public/image")));
-// app.use(express.static(path.join(__dirname,"/public/style")));
   
 app.set('view engine','hbs');
-
 app.engine ('hbs',hbs({
     extname:'hbs',
     defaultview:'default',
-    layoutDir:__dirname +'/views/layouts/'
+    layoutDir:__dirname +'/views/layouts/',
+    helpers: hbsHelpers
 }));
 
-app.use(express.static(path.join(__dirname,"/public/image")));
-app.use(express.static(path.join(__dirname,"/public/style")));
-    
+app.use(express.static(path.join(__dirname,"/public")));
 
+    
 
 // Route Middlewares    
 app.use('/api/user',authRoute);  
